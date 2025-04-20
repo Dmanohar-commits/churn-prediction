@@ -72,25 +72,26 @@
 	  
 				<!-- TABLE BLOCK -->
 				{% if table_data %}
-				<div class="table-responsive mt-4">
-				  <table class="table table-bordered table-striped text-center align-middle">
-					<thead class="table-dark">
-					  <tr>
-						<th style="width: 80%;">Test Data</th>
-						<th style="width: 20%;">Prediction Result</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  {% for row in table_data %}
-					  <tr>
-						<td class="text-start" style="font-size: 14px;">{{ row.test_data }}</td>
-						<td class="{{ row.color_class }}"><strong>{{ row.prediction }}</strong></td>
-					  </tr>
-					  {% endfor %}
-					</tbody>
-				  </table>
-				</div>
-				{% endif %}
+          <div class="table-responsive mt-5">
+            <table class="table table-bordered table-striped text-center align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th style="width: 80%;">Test Data</th>
+                  <th style="width: 20%;">Prediction Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in table_data %}
+                <tr>
+                  <td class="text-start" style="font-size: 14px;">{{ row.test_data }}</td>
+                  <td class="{{ row.color_class }}"><strong>{{ row.prediction }}</strong></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+
 				
 			  </div>
 			</div>

@@ -91,20 +91,29 @@
                 <div class="mb-3">
                   <label for="filter" class="form-label">Choose Filter</label>
                   <select name="t1" id="filter" class="form-select mx-auto">
-					<option selected disabled>-- Select Any --</option>
-                    <option value="Age">Age</option>
-                    <option value="Gender">Gender</option>
-                    <option value="State">Geography</option>
-                    <option value="Churn_Category">Category</option>
-                    <option value="Tenure_in_Months">Tenure in Months</option>
-                    <option value="State">State wise</option>
+                    <option disabled {% if not selected_filter %}selected{% endif %}>-- Select Any --</option>
+                    <option value="Age" {% if selected_filter == "Age" %}selected{% endif %}>Age</option>
+                    <option value="Gender" {% if selected_filter == "Gender" %}selected{% endif %}>Gender</option>
+                    <option value="State" {% if selected_filter == "State" %}selected{% endif %}>Geography</option>
+                    <option value="Churn_Category" {% if selected_filter == "Churn_Category" %}selected{% endif %}>Category</option>
+                    <option value="Tenure_in_Months" {% if selected_filter == "Tenure_in_Months" %}selected{% endif %}>Tenure in Months</option>
+                    <option value="State" {% if selected_filter == "State" %}selected{% endif %}>State wise</option>
                   </select>
+                  
                 </div>
-                <button type="submit" class="btn btn-primary submit-button">Visualize Churn</button>
+                <button type="submit" class="btn btn-primary submit-button">Visualize</button>
               </form>
 
+
+              {% if img %}
               <div class="mt-5">
-                {{ data|safe }}
+                <p class="mb-4 text-muted"><b>{% csrf_token %} {{ data|safe }}</b></p>
+                <img src="data:image/png;base64,{{ img }}" alt="Churn Graph" class="img-fluid rounded shadow">
+              </div>
+            {% endif %}
+
+              <div class="mt-5">
+                
               </div>
             </div>
           </div>

@@ -74,18 +74,18 @@
             <div class="col-lg-8 col-12">
               <div class="custom-form bg-white p-5 shadow rounded">
                 <h2 class="mb-4 text-center">Customer Churn Prediction</h2>
-
+    
                 <form name="f1" method="post" action="{% url 'PredictAction' %}" enctype="multipart/form-data" onsubmit="return validate(this)">
                   {% csrf_token %}
                   {% if data %}
                     <div class="alert alert-info text-center">{{ data|safe }}</div>
                   {% endif %}
-
+    
                   <div class="mb-4">
                     <label for="t1" class="form-label">Upload Test Data</label>
                     <input class="form-control" type="file" name="t1" id="t1" />
                   </div>
-
+    
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary px-4">Submit</button>
                   </div>
@@ -95,8 +95,33 @@
           </div>
         </div>
       </section>
+    
+      {% if table_data %}
+        <section class="mt-5">
+          <div class="container">
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered table-striped text-center align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th style="width: 80%;">Test Data</th>
+                    <th style="width: 20%;">Prediction Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in table_data %}
+                  <tr>
+                    <td class="text-start" style="font-size: 14px;">{{ row.test_data }}</td>
+                    <td class="{{ row.color_class }}"><strong>{{ row.prediction }}</strong></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      {% endif %}
     </main>
-
+    
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">

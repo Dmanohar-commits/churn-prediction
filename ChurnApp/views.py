@@ -103,13 +103,10 @@ def VisualizationAction(request):
         if column == 'Tenure_in_Months':
             min_tenure = data['Tenure_in_Months'].min()
             max_tenure = data['Tenure_in_Months'].max()
-
             bin_edges = list(range((min_tenure // 10) * 10, ((max_tenure // 10) + 2) * 10, 10))
             bin_labels = [f'{bin_edges[i]}-{bin_edges[i + 1]}' for i in range(len(bin_edges) - 1)]
-
             data['Tenure Range'] = pd.cut(data['Tenure_in_Months'], bins=bin_edges, labels=bin_labels, right=False)
             grouped_dynamic = data.groupby(['Tenure Range', 'Customer_Status']).size().reset_index(name='Count')
-
             plt.figure(figsize=(12, 6))
             sns.barplot(data=grouped_dynamic, x='Tenure Range', y='Count', hue='Customer_Status')
             plt.title('Customer Status by Dynamic Tenure Range')
@@ -129,6 +126,7 @@ def VisualizationAction(request):
             plt.legend(title='Customer Status')
 
         else:
+            plt.figure(figsize=(10, 5))
             if column == "Gender":
                 plt.figure(figsize=(4, 3))
             elif column == "Churn_Category":
@@ -137,22 +135,29 @@ def VisualizationAction(request):
             elif column == "State" or column == "Age":
                 plt.figure(figsize=(16, 3))
                 plt.xticks(rotation=70)
-            else:
-                plt.figure(figsize=(10, 5))  # Default size
 
             sns.barplot(x=column, y='Count', hue='Customer_Status', data=gender_churn)
             plt.title(column + " Based Churned Graph")
 
-        # Save and render the plot
+        # Convert plot to base64
         buf = io.BytesIO()
         plt.tight_layout()
         plt.savefig(buf, format='png', bbox_inches='tight')
         img_b64 = base64.b64encode(buf.getvalue()).decode()
-        plt.clf()
-        plt.cla()
+        plt.close()
 
-        context = {'data': column + " Based Churned Graph", 'img': img_b64}
-        return render(request, 'Graph.html', context)
+        context = {
+            'data': column + " Based Churned Graph",
+            'img': img_b64,
+            'selected_filter': column
+        }
+
+        return render(request, 'Visualization.html', context)
+
+    # If GET request, just show blank form
+    return render(request, 'Visualization.html', {'selected_filter': None})
+
+
 
 def index(request):
     if request.method == 'GET':
