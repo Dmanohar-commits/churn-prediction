@@ -1,0 +1,154 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visualization - Customer Churn Prediction</title>
+
+    <!-- CSS FILES -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet" />
+
+    <style>
+      .visualization-section {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+      }
+      .form-select {
+        width: 300px;
+        margin-bottom: 20px;
+      }
+      .submit-button {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body id="section_1">
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-12 d-flex flex-wrap">
+            <p class="d-flex me-4 mb-0">
+              <i class="bi-geo-alt me-2"></i>
+              950 Main Street, 01610 Worcester, Massachusetts
+            </p>
+            <p class="d-flex mb-0">
+              <i class="bi-envelope me-2"></i>
+              <a href="mailto:info@company.com">info@churn-prediction.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="Logo" />
+          <span>
+            Churn Predictor
+            <small>Telecom Industry</small>
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'ViewFile' %}">View Notebook</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'Visualization' %}">Visualization</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Predict' %}">Predict Churn</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <section class="visualization-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+              <h2 class="mb-4">Churn Visualization Page</h2>
+              <img src="{% static 'images/tra.jpg' %}" class="img-fluid mb-4" alt="Visualization Banner" />
+              {% if messages %}
+                <div class="alert alert-warning text-center" role="alert">
+                  {% for message in messages %}
+                    {{ message }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+
+              <form method="post" action="{% url 'VisualizationAction' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="filter" class="form-label">Choose Filter</label>
+                  <select name="t1" id="filter" class="form-select mx-auto">
+					<option selected disabled>-- Select Any --</option>
+                    <option value="Age">Age</option>
+                    <option value="Gender">Gender</option>
+                    <option value="State">Geography</option>
+                    <option value="Churn_Category">Category</option>
+                    <option value="Tenure_in_Months">Tenure in Months</option>
+                    <option value="State">State wise</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary submit-button">Visualize Churn</button>
+              </form>
+
+              <div class="mt-5">
+                {{ data|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-12 mb-4">
+            <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="" />
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mb-4">
+            <h5 class="site-footer-title mb-3">Quick Links</h5>
+            <ul class="footer-menu">
+              <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+              <li class="footer-menu-item"><a href="{% url 'ViewFile' %}" class="footer-menu-link">Notebook</a></li>
+              <li class="footer-menu-item"><a href="{% url 'Visualization' %}" class="footer-menu-link">Visuals</a></li>
+              <li class="footer-menu-item"><a href="{% url 'Predict' %}" class="footer-menu-link">Prediction</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <h5 class="site-footer-title mb-3">Contact</h5>
+            <p class="text-white mb-2">
+              <i class="bi-telephone me-2"></i>
+              <a href="tel:123456789" class="site-footer-link">123-456-789</a>
+            </p>
+            <p class="text-white mb-2">
+              <i class="bi-envelope me-2"></i>
+              <a href="mailto:info@churnpredictor.com" class="site-footer-link">info@churnpredictor.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS FILES -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/click-scroll.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>

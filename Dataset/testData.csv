@@ -1,0 +1,12 @@
+Gender,Age,Married,State,Number_of_Referrals,Tenure_in_Months,Value_Deal,Phone_Service,Multiple_Lines,Internet_Service,Internet_Type,Online_Security,Online_Backup,Device_Protection_Plan,Premium_Support,Streaming_TV,Streaming_Movies,Streaming_Music,Unlimited_Data,Contract,Paperless_Billing,Payment_Method,Monthly_Charge,Total_Charges,Total_Refunds,Total_Extra_Data_Charges,Total_Long_Distance_Charges,Total_Revenue,Churn_Category,Churn_Reason
+Female,38,Yes,Uttar Pradesh,1,19,,No,,Yes,DSL,Yes,Yes,Yes,Yes,No,No,No,Yes,Two Year,No,Bank Withdrawal,45.05,2560.1,0,0,0,2560.1,,
+Female,53,Yes,Bihar,5,8,Deal 1,Yes,Yes,Yes,Fiber Optic,No,Yes,Yes,No,No,Yes,Yes,Yes,Two Year,Yes,Credit Card,95.75,6849.4,0,0,1935.46,8784.86,,
+Female,47,No,Gujarat,14,4,,No,,Yes,DSL,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,One Year,No,Credit Card,61.25,1993.2,0,0,0,1993.2,,
+Female,67,No,Gujarat,13,19,Deal 5,Yes,Yes,Yes,Fiber Optic,No,No,No,No,No,No,No,Yes,One Year,Yes,Bank Withdrawal,72.1,72.1,0,0,7.77,79.87,,
+Female,74,No,Andhra Pradesh,0,30,,Yes,No,Yes,DSL,Yes,No,Yes,No,No,Yes,No,Yes,One Year,No,Credit Card,62.7,2791.5,0,0,480.15,3271.65,Dissatisfaction,Limited range of services
+Male,64,Yes,Madhya Pradesh,15,33,,No,,Yes,Cable,No,No,No,No,No,No,No,Yes,Month-to-Month,Yes,Bank Withdrawal,25.1,25.1,0,0,0,25.1,Competitor,Competitor made better offer
+Female,78,Yes,Maharashtra,12,12,,Yes,Yes,No,,,,,,,,,,One Year,No,Bank Withdrawal,25.2,1306.3,0,0,1571.5,2877.8,,
+Female,29,Yes,Madhya Pradesh,12,20,,Yes,Yes,Yes,Fiber Optic,No,Yes,Yes,No,Yes,No,No,Yes,Month-to-Month,No,Bank Withdrawal,94.1,1215.6,0,0,566.28,1781.88,Other,Don't know
+Female,29,Yes,Maharashtra,8,22,Deal 4,Yes,Yes,Yes,Fiber Optic,No,No,No,No,Yes,No,No,Yes,Month-to-Month,Yes,Bank Withdrawal,83.75,1849.95,0,0,802.93,2652.88,,
+Female,18,No,Bihar,9,7,,Yes,No,No,,,,,,,,,,Month-to-Month,No,Credit Card,19.85,57.2,0,0,9.36,66.56,,
+Female,31,No,Chhattisgarh,12,24,Deal 5,Yes,No,No,,,,,,,,,,Month-to-Month,No,Credit Card,20.35,76.35,0,0,49.72,126.07,Price,Long distance charges
