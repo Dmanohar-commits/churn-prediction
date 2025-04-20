@@ -75,15 +75,24 @@ def PredictAction(request):
         predict = rf_cls.predict(testdata)
         predict = predict.ravel()
 
+        label_map = {
+                        "Churned": "Likely to churn",
+                        "Joined": "Just joined",
+                        "Stayed": "Likely to Stay"
+                    }
+
         # Prepare data for rendering
         table_data = []
         for i in range(len(predict)):
+            original_label = labels[predict[i]]
+            display_label = label_map.get(original_label, original_label)  # fallback if not found
             row_data = {
                 'test_data': temp[i],
-                'prediction': labels[predict[i]],
+                'prediction': display_label,
                 'color': 'red' if predict[i] == 0 else ('cyan' if predict[i] == 1 else 'green')
             }
             table_data.append(row_data)
+
 
         # Pass data to context
         context = {'table_data': table_data}
