@@ -5,15 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Customer Churn Prediction</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
 
     <!-- CSS FILES -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet" />
-
-    <style>
-      
-    </style>
   </head>
 
   <body id="section_1">
@@ -51,7 +48,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'ViewFile' %}">View Notebook</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'Visualization' %}">Visualization</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'Predict' %}">Predict Churn</a></li>
@@ -60,64 +57,107 @@
       </div>
     </nav>
 
-    <!-- HERO / MAIN CONTENT -->
+    <!-- ABOUT US SECTION -->
     <main>
-		<section class="hero-section hero-section-full-height">
-			<div class="container-fluid">
-				<div class="row">
-
-					<div class="col-lg-12 col-12 p-0">
-						<div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="{% static 'images/slide/churn_image_2.jpg' %}" class="carousel-image img-fluid" alt="...">
-									<div class="carousel-caption d-flex flex-column justify-content-end">
-										<h1>be a Kind Heart</h1>
-                                            
-                                            <p>Professional charity theme based on Bootstrap 5.2.2</p>
-									</div>
-								  </div>
-								  
-								  <div class="carousel-item">
-									<img src="{% static 'images/slide/churn_image_3.jpg' %}" class="carousel-image img-fluid" alt="...">
-									<div class="carousel-caption d-flex flex-column justify-content-end">
-										<h1>be a Kind Heart</h1>
-                                            
-                                            <p>Professional charity theme based on Bootstrap 5.2.2</p>
-									</div>
-								  </div>
-								  
-								  <div class="carousel-item">
-									<img src="{% static 'images/slide/churn_image_4.jpg' %}" class="carousel-image img-fluid" alt="...">
-									<div class="carousel-caption d-flex flex-column justify-content-end">
-										<h1>be a Kind Heart</h1>
-                                            
-                                            <p>Professional charity theme based on Bootstrap 5.2.2</p>
-									</div>
-								  </div>
-								  
-							</div>
-
-							<button class="carousel-control-prev" type="button" data-bs-target="#hero-slide" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-
-							<button class="carousel-control-next" type="button" data-bs-target="#hero-slide" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</section>
-
-
-		
-
+      <section class="about-section section-padding">
+        <div class="container">
+          <div class="row align-items-start">
+    
+            <div class="col-lg-6 col-12 mb-4 mb-lg-0">
+              <img src="{% static 'images/about_churn.jpg' %}" class="img-fluid rounded shadow" alt="About Churn Predictor">
+            </div>
+    
+            <div class="col-lg-6 col-12">
+              <div class="custom-text-block">
+                <h2 class="mb-4">🔍 About Us</h2>
+                <p>At <strong>Churn Predictor</strong>, we are on a mission to help businesses transform customer loss into customer loyalty through the power of data. Our intelligent, machine learning-powered platform is designed to detect early churn signals, uncover customer behavior patterns, and empower organizations with actionable strategies to maximize retention and minimize revenue loss.</p>
+    
+                <p>Whether you're in telecom, tech, or subscription services, our solution helps you stay one step ahead by offering the insights you need—before customers decide to leave.</p>
+    
+                <h4 class="mt-4">📊 Data-Driven, Result-Oriented</h4>
+                <p>We’ve engineered our churn prediction models using proven algorithms, including:</p>
+    
+                <ul class="list-unstyled">
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Random Forest</li>
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Logistic Regression</li>
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Neural Network (MLP Classifier)</li>
+                </ul>
+    
+                <div class="table-responsive mt-3">
+                  <table class="table table-bordered text-center">
+                    <thead class="table-light">
+                      <tr>
+                        <th>S.No</th>
+                        <th>Algorithm Name</th>
+                        <th>Accuracy (%)</th>
+                        <th>Precision (%)</th>
+                        <th>Recall (%)</th>
+                        <th>F1 Score (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Random Forest</td>
+                        <td>99.07</td>
+                        <td>97.84</td>
+                        <td>97.21</td>
+                        <td>97.52</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Logistic Regression</td>
+                        <td>98.52</td>
+                        <td>96.24</td>
+                        <td>95.95</td>
+                        <td>96.09</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Neural Network</td>
+                        <td>97.74</td>
+                        <td>95.25</td>
+                        <td>93.12</td>
+                        <td>94.14</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+    
+                <p class="mt-4">Our top-performing Random Forest model has consistently demonstrated over <strong>99% accuracy</strong>, around <strong>98% precision</strong>, over <strong>97% recall</strong>, and more than <strong>97% F1-score</strong>, making it one of the most reliable churn detection tools available today.</p>
+    
+                <h4 class="mt-4">🌟 What Makes Us Different</h4>
+                <ul class="list-unstyled">
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>🔍 Early Churn Detection — Spot risks before they escalate</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>📈 Interactive Dashboards & Visualizations — For intuitive data storytelling</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>🎯 Tailored Recommendations — Get strategies you can act on immediately</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>⚡ Scalable & Industry-Agnostic — Ready for any data and business scale</li>
+                </ul>
+    
+                <h4 class="mt-4">🌐 Expanding Across Industries</h4>
+                <p>We believe churn prediction isn’t just for telecom—it’s a universal challenge across industries. That’s why we’re working on expanding Churn Predictor into multiple domains, including:</p>
+                <ul class="list-unstyled">
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>OTT Platforms like Netflix, Amazon Prime, Disney+</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Food & Beverage giants like McDonald’s, Domino’s</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>E-commerce Titans such as Amazon, Flipkart</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Banking & Insurance</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Education Platforms and Online Learning</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Healthcare & Wellness Services</li>
+                </ul>
+    
+                <h4 class="mt-4">💼 Our Vision</h4>
+                <p>We envision a world where customer churn is no longer a silent threat, but a solvable problem. Our goal is to build a platform that becomes the go-to churn intelligence system for every major industry. With AI at the core and business understanding at the forefront, we help companies retain more, grow faster, and serve better.</p>
+    
+                <h4 class="mt-4">🚀 Join the Retention Revolution</h4>
+                <p>With Churn Predictor, you’re not just watching customers leave—you’re building relationships that last. Let us help you transition from customer loss to customer loyalty with insight, strategy, and confidence.</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </section>
     </main>
+    
 
     <!-- FOOTER -->
     <footer class="site-footer">
