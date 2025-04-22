@@ -87,10 +87,11 @@ def PredictAction(request):
             original_label = labels[predict[i]]
             display_label = label_map.get(original_label, original_label)  # fallback if not found
             row_data = {
-                'test_data': temp[i],
-                'prediction': display_label,
-                'color': 'red' if predict[i] == 0 else ('cyan' if predict[i] == 1 else 'green')
-            }
+                            'test_data': temp[i],
+                            'prediction': display_label,
+                            'color_class': 'text-danger' if predict[i] == 0 else ('text-primary' if predict[i] == 1 else 'text-success')
+                        }
+
             table_data.append(row_data)
 
 
@@ -134,13 +135,24 @@ def VisualizationAction(request):
             plt.xticks(rotation=45)
             plt.legend(title='Customer Status')
 
+        elif column == 'Geography':
+            sns.set(style="whitegrid", palette="muted")
+            plt.figure(figsize=(16, 8))
+            sns.countplot(data=data, x='State', hue='Customer_Status')
+            plt.title('Customer Status Distribution by Geography (State)', fontsize=16)
+            plt.xlabel('State', fontsize=12)
+            plt.ylabel('Number of Customers', fontsize=12)
+            plt.xticks(rotation=45)
+            plt.legend(title='Customer Status')
+
+
         else:
             plt.figure(figsize=(10, 5))
             if column == "Gender":
                 plt.figure(figsize=(4, 3))
             elif column == "Churn_Category":
                 plt.figure(figsize=(8, 3))
-                plt.xticks(rotation=70)
+                plt.xticks(rotation=70) 
             elif column == "State" or column == "Age":
                 plt.figure(figsize=(16, 3))
                 plt.xticks(rotation=70)
