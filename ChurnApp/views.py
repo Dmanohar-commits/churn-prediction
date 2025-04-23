@@ -55,49 +55,66 @@ def ViewFile(request):
 def PredictAction(request):
     if request.method == 'POST':
         global dataset, rf_cls, label_encoder, sc, labels
-        myfile = request.FILES['t1'].read()
-        fname = request.FILES['t1'].name
-        if os.path.exists("ChurnApp/static/"+fname):
-            os.remove("ChurnApp/static/"+fname)
-        with open("ChurnApp/static/"+fname, "wb") as file:
-            file.write(myfile)
-        file.close()
+        try:
+            myfile = request.FILES['t1'].read()
+            fname = request.FILES['t1'].name
+            file_path = "ChurnApp/static/" + fname
 
-        testdata = pd.read_csv("ChurnApp/static/"+fname)
-        temp = testdata.values
-        for i in range(len(label_encoder)):
-            le = label_encoder[i]
-            if le[0] != 'Customer_Status':
-                testdata[le[0]] = pd.Series(le[1].transform(testdata[le[0]].astype(str)))  # encode all str columns to numeric                
-        testdata.fillna(dataset.mean(), inplace=True)  # replace missing values        
-        testdata = testdata.values
-        testdata = sc.transform(testdata)
-        predict = rf_cls.predict(testdata)
-        predict = predict.ravel()
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            with open(file_path, "wb") as file:
+                file.write(myfile)
 
-        label_map = {
-                        "Churned": "Likely to churn",
-                        "Joined": "Just joined",
-                        "Stayed": "Likely to Stay"
-                    }
+            testdata = pd.read_csv(file_path)
+            temp = testdata.values
 
-        # Prepare data for rendering
-        table_data = []
-        for i in range(len(predict)):
-            original_label = labels[predict[i]]
-            display_label = label_map.get(original_label, original_label)  # fallback if not found
-            row_data = {
-                            'test_data': temp[i],
-                            'prediction': display_label,
-                            'color_class': 'text-danger' if predict[i] == 0 else ('text-primary' if predict[i] == 1 else 'text-success')
-                        }
+            # Track columns with encoding errors
+            invalid_columns = []
 
-            table_data.append(row_data)
+            for i in range(len(label_encoder)):
+                le = label_encoder[i]
+                column_name = le[0]
+                if column_name != 'Customer_Status':
+                    try:
+                        testdata[column_name] = pd.Series(le[1].transform(testdata[column_name].astype(str)))
+                    except ValueError:
+                        invalid_columns.append(column_name)
 
+            # If any invalid columns found, display all at once
+            if invalid_columns:
+                error_list = ', '.join(f"'{col}'" for col in invalid_columns)
+                error_message = f"The uploaded file has incorrect or unseen values in the following column(s): {error_list}. Please correct them and try again."
+                return render(request, 'Graph.html', {'error': error_message})
 
-        # Pass data to context
-        context = {'table_data': table_data}
-        return render(request, 'Graph.html', context)   
+            testdata.fillna(dataset.mean(), inplace=True)
+            testdata = testdata.values
+            testdata = sc.transform(testdata)
+            predict = rf_cls.predict(testdata)
+            predict = predict.ravel()
+
+            label_map = {
+                "Churned": "Likely to churn",
+                "Joined": "Just joined",
+                "Stayed": "Likely to Stay"
+            }
+
+            table_data = []
+            for i in range(len(predict)):
+                original_label = labels[predict[i]]
+                display_label = label_map.get(original_label, original_label)
+                row_data = {
+                    'test_data': temp[i],
+                    'prediction': display_label,
+                    'color_class': 'text-danger' if predict[i] == 0 else ('text-primary' if predict[i] == 1 else 'text-success')
+                }
+                table_data.append(row_data)
+
+            return render(request, 'Graph.html', {'table_data': table_data})
+        
+        except Exception as e:
+            return render(request, 'Graph.html', {'error': f"An error occurred: {str(e)}"})
+
+    return render(request, 'Graph.html', {'error': "Invalid request method"})
 
 def Visualization(request):
     if request.method == 'GET':
