@@ -12,4 +12,4 @@ ipython==7.34.0
 ipython-genutils==0.2.0
 ipykernel==6.25.2
 nbconvert==7.6.0
-Django==2.1.7
+Django==4.2
