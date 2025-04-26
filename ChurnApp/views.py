@@ -20,29 +20,31 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_theme()
 
-dataset = pd.read_csv("Dataset/Customer_Data.csv")
-dataset.drop(['Customer_ID'], axis = 1,inplace=True)
-labels = np.unique(dataset['Customer_Status'])
-#Pre-process the data by converting categorical variables to numerical variables, and replacing missing values with mean.
-label_encoder = []
-columns = dataset.columns
-types = dataset.dtypes.values
-for i in range(len(types)):
-    name = types[i]
-    if name == 'object': #finding column with object type
-        le = LabelEncoder()
-        dataset[columns[i]] = pd.Series(le.fit_transform(dataset[columns[i]].astype(str)))#encode all str columns to numeric
-        label_encoder.append([columns[i], le])
-dataset.fillna(dataset.mean(), inplace = True)
-#dataset normalizing using standard Scaler
-Y = dataset['Customer_Status'].ravel()
-dataset.drop(['Customer_Status'], axis = 1,inplace=True)
-X = dataset.values
-sc = StandardScaler()
-X = sc.fit_transform(X)
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
-rf_cls = RandomForestClassifier()
-rf_cls.fit(X_train, y_train)
+def prepare_model():
+    dataset = pd.read_csv("Dataset/Customer_Data.csv")
+    dataset.drop(['Customer_ID'], axis = 1,inplace=True)
+    labels = np.unique(dataset['Customer_Status'])
+    #Pre-process the data by converting categorical variables to numerical variables, and replacing missing values with mean.
+    label_encoder = []
+    columns = dataset.columns
+    types = dataset.dtypes.values
+    for i in range(len(types)):
+        name = types[i]
+        if name == 'object': #finding column with object type
+            le = LabelEncoder()
+            dataset[columns[i]] = pd.Series(le.fit_transform(dataset[columns[i]].astype(str)))#encode all str columns to numeric
+            label_encoder.append([columns[i], le])
+    dataset.fillna(dataset.mean(), inplace = True)
+    #dataset normalizing using standard Scaler
+    Y = dataset['Customer_Status'].ravel()
+    dataset.drop(['Customer_Status'], axis = 1,inplace=True)
+    X = dataset.values
+    sc = StandardScaler()
+    X = sc.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+    rf_cls = RandomForestClassifier()
+    rf_cls.fit(X_train, y_train)
+    return dataset, rf_cls, label_encoder, sc, labels
 
 def Predict(request):
     if request.method == 'GET':
@@ -55,7 +57,7 @@ def ViewFile(request):
 
 def PredictAction(request):
     if request.method == 'POST':
-        global dataset, rf_cls, label_encoder, sc, labels
+        dataset, rf_cls, label_encoder, sc, labels = prepare_model()
         try:
             myfile = request.FILES['t1'].read()
             fname = request.FILES['t1'].name
