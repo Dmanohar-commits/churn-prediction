@@ -1,0 +1,209 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customer Churn Prediction</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+
+    <!-- CSS FILES -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/templatemo-kind-heart-charity.css' %}" rel="stylesheet" />
+  </head>
+
+  <body id="section_1">
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-12 d-flex flex-wrap">
+            <p class="d-flex me-4 mb-0">
+              <i class="bi-geo-alt me-2"></i>
+              950 Main Street, 01610 Worcester, Massachusetts
+            </p>
+            <p class="d-flex mb-0">
+              <i class="bi-envelope me-2"></i>
+              <a href="mailto:info@company.com">info@churn-prediction.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'about' %}">
+          <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="Logo" />
+          <span>
+            Churn Predictor
+            <small>Telecom Industry</small>
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'ViewFile' %}">View Notebook</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Visualization' %}">Visualization</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Predict' %}">Predict Churn</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ABOUT US SECTION -->
+    <main>
+      <section class="about-section section-padding">
+        <div class="container">
+          <div class="row align-items-start mb-5">
+            <div class="col-lg-6 col-12 mb-4 mb-lg-0">
+              <img src="{% static 'images/about_churn.jpg' %}" class="img-fluid rounded shadow mt-5 pt-5" alt="About Churn Predictor">
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="custom-text-block">
+                <h2 class="mb-4">🔍 About Us</h2>
+                <p>At <strong>Churn Predictor</strong>, we are on a mission to turn customer loss into customer loyalty through the transformative power of data. In today’s highly competitive and dynamic marketplace, retaining existing customers is more critical—and more cost-effective—than acquiring new ones. That’s why our platform is built with cutting-edge machine learning models, designed to detect early signs of churn, understand evolving customer behavior, and recommend data-driven strategies for engagement and retention.                </p>
+                <p>Our intelligent system doesn’t just flag potential churn risks—it gives you the why behind the behavior. By analyzing a wide range of factors like usage patterns, service interactions, payment history, and demographic attributes, we help businesses uncover actionable insights that can be used to personalize outreach, improve service, and ultimately, boost customer satisfaction. </p>
+                <p>Whether you’re operating in telecommunications, technology, subscription-based services, or any customer-facing industry, Churn Predictor provides the real-time intelligence you need to act decisively—before customers decide to leave. With predictive analytics and visual dashboards at your fingertips, you're empowered to not just respond to churn, but to anticipate and prevent it.
+
+                  Let us help you shift from being reactive to proactively building loyalty—because every retained customer is a win for growth, reputation, and long-term success.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- NEW FULL-WIDTH SECTION -->
+          <div class="row">
+            <div class="col-12">
+              <div class="custom-text-block">
+                <h4 class="mt-4">📊 Data-Driven, Result-Oriented</h4>
+                <p>We’ve engineered our churn prediction models using proven algorithms, including:</p>
+          
+                <ul class="list-unstyled">
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Random Forest</li>
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Logistic Regression</li>
+                  <li class="mb-2"><i class="bi-check-circle-fill text-success me-2"></i>Neural Network (MLP Classifier)</li>
+                </ul>
+          
+                <div class="table-responsive mt-3">
+                  <table class="table table-bordered text-center">
+                    <thead class="table-light">
+                      <tr>
+                        <th>S.No</th>
+                        <th>Algorithm Name</th>
+                        <th>Accuracy (%)</th>
+                        <th>Precision (%)</th>
+                        <th>Recall (%)</th>
+                        <th>F1 Score (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Random Forest</td>
+                        <td>99.07</td>
+                        <td>97.84</td>
+                        <td>97.21</td>
+                        <td>97.52</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Logistic Regression</td>
+                        <td>98.52</td>
+                        <td>96.24</td>
+                        <td>95.95</td>
+                        <td>96.09</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Neural Network</td>
+                        <td>97.74</td>
+                        <td>95.25</td>
+                        <td>93.12</td>
+                        <td>94.14</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          
+                <p class="mt-4">Our top-performing Random Forest model has consistently demonstrated over <strong>99% accuracy</strong>, around <strong>98% precision</strong>, over <strong>97% recall</strong>, and more than <strong>97% F1-score</strong>, making it one of the most reliable churn detection tools available today.</p>
+                <br>
+                <h4 class="mt-4">🌟 What Makes Us Different</h4>
+                <ul class="list-unstyled">
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>🔍 Early Churn Detection — Spot risks before they escalate</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>📈 Interactive Dashboards & Visualizations — For intuitive data storytelling</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>🎯 Tailored Recommendations — Get strategies you can act on immediately</li>
+                  <li><i class="bi-check-circle-fill text-success me-2"></i>⚡ Scalable & Industry-Agnostic — Ready for any data and business scale</li>
+                </ul>
+                <br>
+                <h4 class="mt-4">🌐 Expanding Across Industries</h4>
+                <p>We believe churn prediction isn’t just for telecom—it’s a universal challenge across industries. That’s why we’re working on expanding Churn Predictor into multiple domains, including:</p>
+                <ul class="list-unstyled">
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>OTT Platforms like Netflix, Amazon Prime, Disney+</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Food & Beverage giants like McDonald’s, Domino’s</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>E-commerce Titans such as Amazon, Flipkart</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Banking & Insurance</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Education Platforms and Online Learning</li>
+                  <li><i class="bi-arrow-right-circle text-primary me-2"></i>Healthcare & Wellness Services</li>
+                </ul>
+                <br>
+                <h4 class="mt-4">💼 Our Vision</h4>
+                <p>We envision a world where customer churn is no longer a silent threat, but a solvable problem. Our goal is to build a platform that becomes the go-to churn intelligence system for every major industry. With AI at the core and business understanding at the forefront, we help companies retain more, grow faster, and serve better.</p>
+                <br>
+                <h4 class="mt-4">🚀 Join the Retention Revolution</h4>
+                <p>With Churn Predictor, you’re not just watching customers leave—you’re building relationships that last. Let us help you transition from customer loss to customer loyalty with insight, strategy, and confidence.</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+    </main>
+    
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-12 mb-4">
+            <img src="{% static 'images/logo.png' %}" class="logo img-fluid" alt="" />
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mb-4">
+            <h5 class="site-footer-title mb-3">Quick Links</h5>
+            <ul class="footer-menu">
+              <li class="footer-menu-item"><a href="{% url 'index' %}" class="footer-menu-link">Home</a></li>
+              <li class="footer-menu-item"><a href="{% url 'about' %}" class="footer-menu-link">About Us</a></li>
+              <li class="footer-menu-item"><a href="{% url 'ViewFile' %}" class="footer-menu-link">Notebook</a></li>
+              <li class="footer-menu-item"><a href="{% url 'Visualization' %}" class="footer-menu-link">Visuals</a></li>
+              <li class="footer-menu-item"><a href="{% url 'Predict' %}" class="footer-menu-link">Prediction</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <h5 class="site-footer-title mb-3">Contact</h5>
+            <p class="text-white mb-2">
+              <i class="bi-telephone me-2"></i>
+              <a href="tel:123456789" class="site-footer-link">123-456-789</a>
+            </p>
+            <p class="text-white mb-2">
+              <i class="bi-envelope me-2"></i>
+              <a href="mailto:info@churnpredictor.com" class="site-footer-link">info@churnpredictor.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS FILES -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/click-scroll.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>
