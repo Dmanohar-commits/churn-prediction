@@ -18,6 +18,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+sns.set_theme()
 
 dataset = pd.read_csv("Dataset/Customer_Data.csv")
 dataset.drop(['Customer_ID'], axis = 1,inplace=True)
